@@ -18,11 +18,11 @@
 
 ```json
 {
-	"code": 0, // or 1
-	"msg": "password is been set", // or "password is not been set"
-	"data": {
-		"isSet": true // or false
-	}
+  "code": 0,
+  "msg": "password is been set",
+  "data": {
+    "isSet": true
+  }
 }
 ```
 
@@ -47,11 +47,11 @@ dsbridge.call("arcIsSetPWD", "", function(result) {
 
 ```json
 {
-	"code": 0, // or 1
-	"msg": "codeA and codeB is been set", // or "codeA and codeB is not been set"
-	"data": {
-		"isSet": true // or false
-	}
+  "code": 0,
+  "msg": "codeA and codeB is been set",
+  "data": {
+    "isSet": true
+  }
 }
 ```
 
@@ -124,8 +124,8 @@ dsbridge.call("arcToast", "msg");
 
 ```json
 {
-	"content": "分享的文字内容",
-	"imgUrl": "分享图片的网络地址"
+  "content": "分享的文字内容",
+  "imgUrl": "分享图片的网络地址"
 }
 ```
 
@@ -133,8 +133,8 @@ dsbridge.call("arcToast", "msg");
 
 ```json
 {
-	"code": 0, // or 1
-	"msg": "share ok" // or "share fail"
+  "code": 0,
+  "msg": "share ok"
 }
 ```
 
@@ -142,11 +142,9 @@ dsbridge.call("arcToast", "msg");
 
 ```js
 dsbridge.call("arcShare", JSON.stringify({ content, imgUrl }), function(result) {
-      const parseResult = JSON.parse(result);
-      // ...
-    });
-  },
-
+  const parseResult = JSON.parse(result);
+  // ...
+});
 ```
 
 ### 3. 钱包图片功能
@@ -161,21 +159,23 @@ dsbridge.call("arcShare", JSON.stringify({ content, imgUrl }), function(result) 
 
 ```json
 {
-	"limit": 1, // [1,9] 选择图片的数量
+  "limit": 1,
 }
 ```
+
+limit 为选择图片的数量的，范围为 [1,9] 
 
 **返回**:
 
 ```json
 {
-	"code": 0, // or 1
-	"msg": "choose images success", // or "share fail"
-	"data": [
-		{
-			"base64": "图片base64内容"
-		}
-	]
+  "code": 0,
+  "msg": "choose images success",
+  "data": [
+    {
+      "base64": "图片base64内容"
+    }
+  ]
 }
 ```
 
@@ -198,11 +198,11 @@ dsbridge.call("arcChooseImgs", JSON.stringify({ limit }), function(result) {
 
 ```json
 {
-	"imgs": [
-		"图片的网络地址1",
-		"图片的网络地址2",
-		"图片的网络地址3"
-	]
+  "imgs": [
+    "图片的网络地址1",
+    "图片的网络地址2",
+    "图片的网络地址3"
+  ]
 }
 ```
 
