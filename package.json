@@ -1,5 +1,5 @@
 {
-  "name": "arc-wallet-js-sdk",
+  "name": "arc-wallet-js-api",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
