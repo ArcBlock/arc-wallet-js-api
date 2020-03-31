@@ -2,6 +2,14 @@
 
 不断完善 js api，使 Dapp 在内置的浏览器中打开之后的体验更加的完善便捷。
 
+## 如何体验
+
+### Android
+
+Android ABT Wallet Dev V2.5.3 开始可以通过扫码此 js api demo 进行测试体验
+
+### iOS
+
 ## API 列表
 
 ### 1. 钱包相关配置检查
@@ -163,7 +171,7 @@ dsbridge.call("arcShare", JSON.stringify({ content, imgUrl }), function(result) 
 }
 ```
 
-limit 为选择图片的数量的，范围为 [1,9] 
+limit 为选择图片的数量的，范围为 [1,9]
 
 **返回**:
 
