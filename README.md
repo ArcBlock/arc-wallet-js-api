@@ -1,48 +1,81 @@
-# arc-wallet-js-api
+# Examples Of `@arcblock/bridge` Usages
 
-不断完善 js api，使 Dapp 在内置的浏览器中打开之后的体验更加的完善便捷。
+通过 `@arcblock/bridge` 让运行在 ABT 钱包中的应用调用更多的钱包原生功能，从而帮助应用提升交互体验。
 
-## 如何体验
+## 安装
 
-### Android
+`npm install @arcblock/bridge`
 
-Android ABT Wallet Dev V2.5.3 开始可以通过扫码此 js api demo 进行测试体验
+或者
 
-### iOS
+`yarn add @arcblock/bridge`
 
-## 如何运行此 Demo
+## 使用
 
-1. 安装依赖
+1. 获取到 `@arcblock/bridge` 对象
 
-	```
-	yarn
-	```
-	or
-	```
-	npm install
-	```
+```js
+import abtsdk from "@arcblock/bridge";
+```
 
-2. 运行项目
+2. 通过拿到的对象，调用对应 API，唤起原生功能，示例：
 
-	```
-	yarn start
-	```
-	or
-	```
-	npm run start
-	```
+下面的代码通过 `chooseImgs` API, 将会唤起原生的图片选择功能，并返回 base64 格式的图片结果
 
-## API 列表
+```js
+abtsdk.chooseImgs({
+  limit: 1,
+  success: function(result) {
+    alert(result);
+    var parseResult = JSON.parse(result);
+    // 拿到图片结果
+  },
+  fail: function(error) {
+    alert(error);
+  },
+});
+```
+
+## 运行项目，体验全部 API
+
+1. clone 代码
+2. 项目根目录下安装依赖
+
+  ```
+  npm install
+  or
+  yarn
+  ```
+3. 依赖安装完成之后，运行项目
+
+  ```
+  npm run start
+  or
+  yarn start
+  ```
+
+## 完整 API 列表
 
 ### 1. 钱包相关配置检查
 
 #### 1.1 是否设置了密码
 
-**接口名称**: `arcIsSetPWD`
+**接口名称**: `isSetPWD`
 
 **接口描述**: 用来检查钱包的密码是否完成设置。
 
-**参数**: 无
+**调用示例**:
+
+```js
+abtsdk.isSetPWD({
+  success: function(result) {
+    alert(result);
+  },
+  fail: function(error) {
+    alert(error);
+  },
+});
+```
 
 **返回数据**
 
@@ -56,22 +89,24 @@ Android ABT Wallet Dev V2.5.3 开始可以通过扫码此 js api demo 进行测�
 }
 ```
 
-**前端调用示例**
-
-```js
-dsbridge.call("arcIsSetPWD", "", function(result) {
- const parseResult = JSON.parse(result);
- // ...
-});
-```
-
 #### 1.2 是否设置了CodeA+CodeB
 
-**接口名称**: `arcIsCodeABOk`
+**接口名称**: `isCodeABOk`
 
 **接口描述**: 用来检查钱包的 CodeA 和 CodeB 是否配置完毕
 
-**参数**: 无
+**调用示例**
+
+```js
+abtsdk.isCodeABOk({
+  success: function(result) {
+    alert(result);
+  },
+  fail: function(error) {
+    alert(error);
+  },
+});
+```
 
 **返回**
 
@@ -85,78 +120,64 @@ dsbridge.call("arcIsSetPWD", "", function(result) {
 }
 ```
 
-**前端调用示例**
-
-```js
-dsbridge.call("arcIsCodeABOk", "", function(result) {
- const parseResult = JSON.parse(result);
- // ...
-});
-```
-
 ### 2. 原生视图交互
 
 #### 2.1 显示原生 Loading
 
-**接口名称**: `arcShowLoading`
+**接口名称**: `showLoading`
 
 **接口描述**: 用来显示一个原生的 Loading 视图
-
-**参数**: 无
-
-**返回**: 无
 
 **前端调用示例**
 
 ```js
-dsbridge.call("arcShowLoading");
+abtsdk.showLoading();
 ```
 
 #### 2.2 隐藏原生 Loading
 
-**接口名称**: `arcHideLoading`
+**接口名称**: `hideLoading`
 
 **接口描述**: 用来隐藏一个原生的 Loading 视图
 
-**参数**: 无
-
-**返回**: 无
-
-**前端调用示例**
+**调用示例**
 
 ```js
-dsbridge.call("arcHideLoading");
+abtsdk.hideLoading();
 ```
 
 #### 2.3 显示 Toast
 
-**接口名称**: `arcToast`
+**接口名称**: `showToast`
 
 **接口描述**: 用来显示一个原生 Toast
 
-**参数**: msg (string)
-
-**返回**: 无
-
-**前端调用示例**
+**调用示例**
 
 ```js
-dsbridge.call("arcToast", "msg");
+abtsdk.showToast("弹出 Toast");
 ```
 
 #### 2.4 分享图片/文字
 
-**接口名称**: `arcShare`
+**接口名称**: `shareMessage`
 
 **接口描述**: 调起原生的分享功能
 
-**参数**:
+**调用示例**
 
-```json
-{
-  "content": "分享的文字内容",
-  "imgUrl": "分享图片的网络地址"
-}
+```js
+abtsdk.shareMessage({
+  content: "我是分享的内容",
+  imgUrl:
+    "https://www.arcblockio.cn/static/ced252cf99aeed1621e576aa2070a97c/533d0/cover.jpg",
+  success: function(result) {
+    alert(result);
+  },
+  fail: function(error) {
+    alert(error);
+  },
+});
 ```
 
 **返回**:
@@ -168,32 +189,29 @@ dsbridge.call("arcToast", "msg");
 }
 ```
 
-**前端调用示例**
-
-```js
-dsbridge.call("arcShare", JSON.stringify({ content, imgUrl }), function(result) {
-  const parseResult = JSON.parse(result);
-  // ...
-});
-```
-
 ### 3. 钱包图片功能
 
 #### 3.1 选择图片
 
-**接口名称**: `arcChooseImgs`
+**接口名称**: `chooseImgs`
 
 **接口描述**: 调起原生的选择图片功能
 
-**参数**:
+**调用示例**
 
-```json
-{
-  "limit": 1,
-}
+```js
+abtsdk.chooseImgs({
+  limit: 1, // limit 为选择图片的数量，范围为 [1,9]
+  success: function(result) {
+    alert(result);
+    var parseResult = JSON.parse(result);
+    setImages(parseResult.data);
+  },
+  fail: function(error) {
+    alert(error);
+  },
+});
 ```
-
-limit 为选择图片的数量的，范围为 [1,9]
 
 **返回**:
 
@@ -209,37 +227,20 @@ limit 为选择图片的数量的，范围为 [1,9]
 }
 ```
 
-**前端调用示例**
-
-```js
-dsbridge.call("arcChooseImgs", JSON.stringify({ limit }), function(result) {
- const parseResult = JSON.parse(result);
- // ...
-});
-```
-
 #### 3.2 图片预览
 
-**接口名称**: `arcPreviewImgs`
+**接口名称**: `previewImgs`
 
 **接口描述**: 调起原生的图片预览功能
 
-**参数**:
-
-```json
-{
-  "imgs": [
-    "图片的网络地址1",
-    "图片的网络地址2",
-    "图片的网络地址3"
-  ]
-}
-```
-
-**返回**: 无
-
-**前端调用示例**
+**调用示例**
 
 ```js
-dsbridge.call("arcPreviewImgs", JSON.stringify({ imgs }));
+abtsdk.previewImgs({
+  imgs: [
+    "https://www.arcblockio.cn/static/7538def97144ef23c8fd73a29251f29b/38a09/wallet-hero.jpg",
+    "https://www.arcblockio.cn/static/706dd75630708b7dea700c622e28e0ca/38a09/cover.jpg",
+    "https://www.arcblockio.cn/static/1c920742168959a53968cd129cb5acca/38a09/cover2.jpg",
+  ],
+});
 ```

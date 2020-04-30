@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@arcblock/bridge@^0.77.0":
+  version "0.77.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/bridge/download/@arcblock/bridge-0.77.0.tgz#c701f5367b38b3c5f157fbcf6e75a0cf40f30e69"
+  integrity sha1-xwH1Nns4s8XxV/vPbnWgz0DzDmk=
+  dependencies:
+    dsbridge "^3.1.4"
+
 "@babel/code-frame@7.8.3", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.8.3.tgz#33e25903d7481181534e12ec0a25f16b6fcf419e"

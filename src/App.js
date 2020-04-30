@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import abtsdk from "./abtsdk";
+import abtsdk from "@arcblock/bridge";
 
 export default function App() {
   useEffect(() => {});
@@ -10,7 +10,7 @@ export default function App() {
     abtsdk.shareMessage({
       content: "我是分享的内容",
       imgUrl:
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590221837&di=60b1b06477e5a6cb55f868e0e04e4be4&imgtype=0&src=http%3A%2F%2Fwww.17qq.com%2Fimg_biaoqing%2F85475573.jpeg",
+        "https://www.arcblockio.cn/static/ced252cf99aeed1621e576aa2070a97c/533d0/cover.jpg",
       success: function(result) {
         alert(result);
       },
