@@ -53,6 +53,7 @@ abtsdk.chooseImgs({
   or
   yarn start
   ```
+4. 保持手机和项目的网络在同一个局域网内，用 [二维码生成网站](https://cli.im/) 生成一个本地访问地址的二维码，再用 ABT 钱包扫码即可体验
 
 ## 完整 API 列表
 
