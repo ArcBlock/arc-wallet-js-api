@@ -1,4 +1,4 @@
-# Examples Of `@arcblock/bridge` Usages
+# `@arcblock/bridge` 示例项目
 
 通过 `@arcblock/bridge` 让运行在 ABT 钱包中的应用调用更多的钱包原生功能，从而帮助应用提升交互体验。
 
